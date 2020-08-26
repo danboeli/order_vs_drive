@@ -26,7 +26,7 @@ def distance_all_to_mall(locations):
 
 
 def distance_delivery(locations):
-    coords_list = [locations.logistics_center, locations.locations]  # todo reformat to make it work
+    coords_list = np.concatenate((locations.logistics_center, locations.locations))
     problem_no_fit = mlrose.TSPOpt(length=locations.number_of_locations + 1, coords=coords_list,
                                    maximize=False)
     best_state, best_fitness = mlrose.genetic_alg(problem_no_fit, mutation_prob=0.2,
